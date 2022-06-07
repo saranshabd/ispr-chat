@@ -51,47 +51,11 @@ const EmptyMessagesPlaceholder = () => {
   );
 };
 
-const GettingStartedRedirect = ({inbox}: {inbox?: Inbox | null}) => {
-  const extra =
-    inbox && inbox.id ? (
-      <Link to={`/inboxes/${inbox.id}`}>
-        <Button type="primary">Configure inbox</Button>
-      </Link>
-    ) : (
-      <Link to="/getting-started">
-        <Button type="primary">Get started</Button>
-      </Link>
-    );
-
-  return (
-    <Box my={4}>
-      <Result
-        title="No messages"
-        subTitle="It looks like no channels have been set up yet!"
-        extra={extra}
-      />
-    </Box>
-  );
-};
-
-const EmptyState = ({
-  loading,
-  isNewUser,
-  inbox,
-}: {
-  loading?: boolean;
-  isNewUser?: boolean;
-  inbox?: Inbox | null;
-}) => {
+const EmptyState = ({loading}: {loading?: boolean}) => {
   if (loading) {
     return null;
   }
-
-  if (isNewUser) {
-    return <GettingStartedRedirect inbox={inbox} />;
-  } else {
-    return <EmptyMessagesPlaceholder />;
-  }
+  return <EmptyMessagesPlaceholder />;
 };
 
 export const ConversationsDashboard = ({
@@ -552,7 +516,7 @@ export const ConversationsDashboard = ({
         }}
       >
         <Box sx={{position: 'relative', borderBottom: '1px solid #f0f0f0'}}>
-          {!!inbox?.id && (
+          {/* {!!inbox?.id && (
             <Box sx={{position: 'absolute', top: '6px', right: '6px'}}>
               <Tooltip title="Configure inbox">
                 <Link to={`/inboxes/${inbox.id}`}>
@@ -566,7 +530,7 @@ export const ConversationsDashboard = ({
                 </Link>
               </Tooltip>
             </Box>
-          )}
+          )} */}
           <Box px={3} py={3}>
             <Title level={3} style={{marginBottom: 0, marginTop: 8}}>
               {title}
@@ -627,11 +591,7 @@ export const ConversationsDashboard = ({
             setScrollRef={setScrollRef}
           />
         ) : (
-          <EmptyState
-            loading={status === 'loading'}
-            isNewUser={isNewUser}
-            inbox={inbox}
-          />
+          <EmptyState loading={status === 'loading'} />
         )}
       </Layout>
     </Layout>

@@ -76,7 +76,7 @@ const App = () => {
         <Route path="/sandbox" component={Sandbox} />
         <Route path="/share" component={SharedConversation} />
         <Route path="/" component={Dashboard} />
-        <Route path="*" render={() => <Redirect to="/conversations" />} />
+        <Route path="*" render={() => <Redirect to="/inboxes" />} />
       </Switch>
     </Router>
   );

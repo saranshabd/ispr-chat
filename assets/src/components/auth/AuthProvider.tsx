@@ -10,7 +10,6 @@ export const AuthContext = React.createContext<{
   loading: boolean;
   currentUser: User | null;
   account: Account | null;
-  register: (params: any) => Promise<void>;
   login: (params: any) => Promise<void>;
   logout: () => Promise<void>;
   refresh: (token: string) => Promise<void>;
@@ -20,7 +19,6 @@ export const AuthContext = React.createContext<{
   loading: false,
   currentUser: null,
   account: null,
-  register: () => Promise.resolve(),
   login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
   refresh: () => Promise.resolve(),
@@ -141,16 +139,6 @@ export class AuthProvider extends React.Component<Props, State> {
       });
   };
 
-  register = async (params: API.RegisterParams): Promise<void> => {
-    logger.debug('Signing up!');
-    // Set user, authenticated status, etc
-    return API.register(params)
-      .then((tokens) => this.handleAuthSuccess(tokens))
-      .then(() => {
-        logger.debug('Successfully signed up!');
-      });
-  };
-
   login = async (params: API.LoginParams): Promise<void> => {
     logger.debug('Logging in!');
     // Set user, authenticated status, etc
@@ -183,7 +171,6 @@ export class AuthProvider extends React.Component<Props, State> {
           currentUser,
           account,
 
-          register: this.register,
           login: this.login,
           logout: this.logout,
           refresh: this.refresh,

@@ -91,27 +91,6 @@ export const logout = async () => {
   return request.delete(`/api/session`).then((res) => res.body);
 };
 
-export const register = async ({
-  companyName,
-  inviteToken,
-  email,
-  password,
-  passwordConfirmation,
-}: RegisterParams) => {
-  return request
-    .post(`/api/registration`)
-    .send({
-      user: {
-        company_name: companyName,
-        invite_token: inviteToken,
-        email,
-        password,
-        password_confirmation: passwordConfirmation,
-      },
-    })
-    .then((res) => res.body.data);
-};
-
 export const renew = async (token = getRefreshToken()) => {
   if (!token) {
     throw new Error('Invalid token!');

@@ -23,14 +23,14 @@ class Login extends React.Component<Props, State> {
     email: '',
     password: '',
     error: null,
-    redirect: '/conversations',
+    redirect: '/inboxes',
   };
 
-  componentDidMount() {
-    const {redirect = '/conversations'} = qs.parse(this.props.location.search);
-
-    this.setState({redirect: String(redirect)});
-  }
+  // componentDidMount() {
+  // const {redirect = '/conversations'} = qs.parse(this.props.location.search);
+  //
+  // this.setState({redirect: String(redirect)});
+  // }
 
   handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({email: e.target.value});
@@ -119,10 +119,6 @@ class Login extends React.Component<Props, State> {
               </Box>
             )}
 
-            <Box mt={error ? 3 : 4}>
-              Don't have an account?{' '}
-              <Link to={`/register${location.search}`}>Sign up!</Link>
-            </Box>
             <Box my={3}>
               <Link to="/reset-password">Forgot your password?</Link>
             </Box>

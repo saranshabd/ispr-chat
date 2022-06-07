@@ -62,20 +62,20 @@ const InboxesTable = ({
         return <Text>{value || '--'}</Text>;
       },
     },
-    {
-      title: '',
-      dataIndex: 'action',
-      key: 'action',
-      render: (value: string, record: Inbox) => {
-        const {id: inboxId} = record;
+    // {
+    //   title: '',
+    //   dataIndex: 'action',
+    //   key: 'action',
+    //   render: (value: string, record: Inbox) => {
+    //     const {id: inboxId} = record;
 
-        return (
-          <Link to={`/inboxes/${inboxId}`}>
-            <Button>Configure</Button>
-          </Link>
-        );
-      },
-    },
+    //     return (
+    //       <Link to={`/inboxes/${inboxId}`}>
+    //         <Button>Configure</Button>
+    //       </Link>
+    //     );
+    //   },
+    // },
   ];
 
   return (
@@ -133,18 +133,18 @@ class InboxesOverview extends React.Component<Props, State> {
         <Flex sx={{justifyContent: 'space-between', alignItems: 'center'}}>
           <Title level={3}>Inboxes</Title>
 
-          <NewInboxModalButton
+          {/* <NewInboxModalButton
             type="primary"
             icon={<PlusOutlined />}
             onSuccess={this.handleNewInboxCreated}
           >
             New inbox
-          </NewInboxModalButton>
+          </NewInboxModalButton> */}
         </Flex>
 
-        <Box mb={4}>
+        {/* <Box mb={4}>
           <Paragraph>Create inboxes to manage your conversations.</Paragraph>
-        </Box>
+        </Box> */}
 
         <Box my={4}>
           <InboxesTable loading={loading} inboxes={inboxes} />

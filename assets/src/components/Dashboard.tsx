@@ -200,11 +200,11 @@ const ChatWithUs = ({
 // tab (i.e. HTML title) so users can see when new messages arrive
 const DashboardHtmlHead = ({totalNumUnread}: {totalNumUnread: number}) => {
   const doc = document || window.document;
-  const [htmlTitle, setHtmlTitle] = useState('Papercups');
+  const [htmlTitle, setHtmlTitle] = useState('ISPR | Chat');
   const isWindowVisible = useWindowVisibility(doc);
   const timer = useRef<any>();
 
-  const hasDefaultTitle = (title: string) => title.startsWith('Papercups');
+  const hasDefaultTitle = (title: string) => title.startsWith('ISPR | Chat');
 
   const toggleNotificationMessage = () => {
     if (totalNumUnread > 0 && hasDefaultTitle(htmlTitle) && !isWindowVisible) {
@@ -212,7 +212,7 @@ const DashboardHtmlHead = ({totalNumUnread}: {totalNumUnread: number}) => {
         `(${totalNumUnread}) New message${totalNumUnread === 1 ? '' : 's'}!`
       );
     } else {
-      setHtmlTitle('Papercups');
+      setHtmlTitle('ISPR | Chat');
     }
   };
 
@@ -234,7 +234,7 @@ const DashboardHtmlHead = ({totalNumUnread}: {totalNumUnread: number}) => {
 
   return (
     <Helmet defer={false}>
-      <title>{totalNumUnread ? htmlTitle : 'Papercups'}</title>
+      <title>{totalNumUnread ? htmlTitle : 'ISPR | Chat'}</title>
     </Helmet>
   );
 };
@@ -298,7 +298,7 @@ const Dashboard = (props: RouteComponentProps) => {
         <Flex sx={{flexDirection: 'column', height: '100%'}}>
           <Box py={3} sx={{flex: 1}}>
             <Menu selectedKeys={[section, key]} mode="inline" theme="dark">
-              {isAdminUser && (
+              {/* {isAdminUser && (
                 <Menu.Item
                   key="getting-started"
                   icon={<GlobalOutlined />}
@@ -306,7 +306,7 @@ const Dashboard = (props: RouteComponentProps) => {
                 >
                   <Link to="/getting-started">Getting started</Link>
                 </Menu.Item>
-              )}
+              )} */}
 
               <Menu.Item
                 danger={shouldHighlightInbox}
@@ -317,7 +317,7 @@ const Dashboard = (props: RouteComponentProps) => {
                 <Link to="/conversations/all">Inbox ({totalNumUnread})</Link>
               </Menu.Item>
 
-              {isAdminUser && (
+              {/* {isAdminUser && (
                 <Menu.Item
                   title="Integrations"
                   icon={<ApiOutlined />}
@@ -325,9 +325,9 @@ const Dashboard = (props: RouteComponentProps) => {
                 >
                   <Link to="/integrations">Integrations</Link>
                 </Menu.Item>
-              )}
+              )} */}
 
-              <Menu.SubMenu
+              {/* <Menu.SubMenu
                 key="customers"
                 icon={<TeamOutlined />}
                 title="Customers"
@@ -347,17 +347,17 @@ const Dashboard = (props: RouteComponentProps) => {
                 <Menu.Item key="notes">
                   <Link to="/notes">Notes</Link>
                 </Menu.Item>
-              </Menu.SubMenu>
+              </Menu.SubMenu> */}
 
-              <Menu.Item
+              {/* <Menu.Item
                 title="Reporting"
                 icon={<LineChartOutlined />}
                 key="reporting"
               >
                 <Link to="/reporting">Reporting</Link>
-              </Menu.Item>
+              </Menu.Item> */}
 
-              {isAdminUser && (
+              {/* {isAdminUser && (
                 <Menu.SubMenu
                   key="developers"
                   icon={<CodeOutlined />}
@@ -375,9 +375,9 @@ const Dashboard = (props: RouteComponentProps) => {
                     <Link to="/functions">Functions</Link>
                   </Menu.Item>
                 </Menu.SubMenu>
-              )}
+              )} */}
 
-              {isAdminUser && (
+              {/* {isAdminUser && (
                 <Menu.SubMenu
                   key="sessions"
                   icon={<VideoCameraOutlined />}
@@ -390,9 +390,9 @@ const Dashboard = (props: RouteComponentProps) => {
                     <Link to="/sessions/setup">Set up Storytime</Link>
                   </Menu.Item>
                 </Menu.SubMenu>
-              )}
+              )} */}
 
-              {isAdminUser ? (
+              {/* {isAdminUser ? (
                 <Menu.SubMenu
                   key="settings"
                   icon={<SettingOutlined />}
@@ -432,7 +432,7 @@ const Dashboard = (props: RouteComponentProps) => {
                     <Link to="/settings/saved-replies">Saved replies</Link>
                   </Menu.Item>
                 </Menu.SubMenu>
-              )}
+              )} */}
             </Menu>
           </Box>
 
@@ -468,9 +468,9 @@ const Dashboard = (props: RouteComponentProps) => {
         }}
       >
         <Switch>
-          <Route path="/getting-started" component={GettingStarted} />
+          {/* <Route path="/getting-started" component={GettingStarted} />
 
-          {/* Temporary redirect routes to point from /accounts/* to /settings/* */}
+          Temporary redirect routes to point from /accounts/* to /settings/*
           <Redirect from="/account/overview" to="/settings/overview" />
           <Redirect from="/account/team" to="/settings/team" />
           <Redirect from="/account/profile" to="/settings/profile" />
@@ -576,9 +576,9 @@ const Dashboard = (props: RouteComponentProps) => {
           <Route path="/issues/:id" component={IssueDetailsPage} />
           <Route path="/issues" component={IssuesOverview} />
           <Route path="/notes" component={NotesOverview} />
-          <Route path="/conversations*" component={InboxesDashboard} />
+          <Route path="/conversations*" component={InboxesDashboard} /> */}
           <Route path="/inboxes*" component={InboxesDashboard} />
-          <Route path="*" render={() => <Redirect to="/conversations/all" />} />
+          <Route path="*" render={() => <Redirect to="/inboxes" />} />
         </Switch>
       </Layout>
 

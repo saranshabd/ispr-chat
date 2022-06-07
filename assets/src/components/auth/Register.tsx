@@ -248,7 +248,7 @@ class Register extends React.Component<Props, State> {
 const RegisterPage = (props: RouteComponentProps) => {
   const auth = useAuth();
 
-  return <Register {...props} onSubmit={auth.register} />;
+  return <Register {...props} onSubmit={async () => {}} />;
 };
 
 export default RegisterPage;

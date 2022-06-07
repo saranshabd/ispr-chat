@@ -75,8 +75,10 @@ defmodule ChatApiWeb.RegistrationController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    if registration_disabled?() do
-      send_server_error(conn, 403, "An invitation token is required to register")
+    secret_key_header = Conn.get_req_header(conn, "x-secret-key")
+    env_secret_key = System.get_env("REGISTRATION_SECRET_KEY")
+    if "#{secret_key_header}" != "#{env_secret_key}" do
+      send_server_error(conn, 403, "An invalid secret key is passed")
     else
       conn
       |> user_with_account_transaction(user_params)
@@ -125,9 +127,8 @@ defmodule ChatApiWeb.RegistrationController do
     |> Ecto.Multi.run(:inbox, fn _repo, %{account: account} ->
       ChatApi.Inboxes.create_inbox(%{
         account_id: account.id,
-        name: "Primary Inbox",
-        description:
-          "This is the primary Papercups inbox for #{account.company_name}. All messages will flow into here by default.",
+        name: account.company_name,
+        description: "This is the primary inbox for #{account.company_name}.",
         is_primary: true,
         is_private: false
       })
