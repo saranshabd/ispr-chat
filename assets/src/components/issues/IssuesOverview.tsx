@@ -117,7 +117,7 @@ class IssuesOverview extends React.Component<Props, State> {
     return (
       <Container>
         <Flex sx={{justifyContent: 'space-between', alignItems: 'center'}}>
-          <Title level={3}>Issues (beta)</Title>
+          <Title level={3}>Issues</Title>
 
           <Button
             type="primary"
@@ -139,7 +139,7 @@ class IssuesOverview extends React.Component<Props, State> {
             Use issues to track and manage feedback from your customers.
           </Paragraph>
 
-          <Alert
+          {/* <Alert
             message={
               <Text>
                 This page is still a work in progress &mdash; more features
@@ -148,7 +148,7 @@ class IssuesOverview extends React.Component<Props, State> {
             }
             type="info"
             showIcon
-          />
+          /> */}
         </Box>
 
         <Box mb={3}>

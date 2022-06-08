@@ -327,7 +327,7 @@ const Dashboard = (props: RouteComponentProps) => {
                 </Menu.Item>
               )} */}
 
-              {/* <Menu.SubMenu
+              <Menu.SubMenu
                 key="customers"
                 icon={<TeamOutlined />}
                 title="Customers"
@@ -335,9 +335,9 @@ const Dashboard = (props: RouteComponentProps) => {
                 <Menu.Item key="people">
                   <Link to="/customers">People</Link>
                 </Menu.Item>
-                <Menu.Item key="companies">
+                {/* <Menu.Item key="companies">
                   <Link to="/companies">Companies</Link>
-                </Menu.Item>
+                </Menu.Item> */}
                 <Menu.Item key="tags">
                   <Link to="/tags">Tags</Link>
                 </Menu.Item>
@@ -347,15 +347,15 @@ const Dashboard = (props: RouteComponentProps) => {
                 <Menu.Item key="notes">
                   <Link to="/notes">Notes</Link>
                 </Menu.Item>
-              </Menu.SubMenu> */}
+              </Menu.SubMenu>
 
-              {/* <Menu.Item
+              <Menu.Item
                 title="Reporting"
                 icon={<LineChartOutlined />}
                 key="reporting"
               >
                 <Link to="/reporting">Reporting</Link>
-              </Menu.Item> */}
+              </Menu.Item>
 
               {/* {isAdminUser && (
                 <Menu.SubMenu
@@ -392,6 +392,18 @@ const Dashboard = (props: RouteComponentProps) => {
                 </Menu.SubMenu>
               )} */}
 
+              <Menu.SubMenu
+                key="settings"
+                icon={<SettingOutlined />}
+                title="Settings"
+              >
+                <Menu.Item key="profile">
+                  <Link to="/settings/profile">My profile</Link>
+                </Menu.Item>
+                <Menu.Item key="saved-replies">
+                  <Link to="/settings/saved-replies">Saved replies</Link>
+                </Menu.Item>
+              </Menu.SubMenu>
               {/* {isAdminUser ? (
                 <Menu.SubMenu
                   key="settings"
@@ -480,16 +492,15 @@ const Dashboard = (props: RouteComponentProps) => {
           />
           <Redirect from="/account*" to="/settings*" />
           <Redirect from="/billing" to="/settings/billing" />
-          <Redirect from="/saved-replies" to="/settings/saved-replies" />
-
-          <Route path="/settings/account" component={AccountOverview} />
-          <Route path="/settings/team" component={TeamOverview} />
+          <Redirect from="/saved-replies" to="/settings/saved-replies" /> */}
+          {/* <Route path="/settings/account" component={AccountOverview} />
+          <Route path="/settings/team" component={TeamOverview} /> */}
           <Route path="/settings/profile" component={UserProfile} />
           <Route
             path="/settings/saved-replies"
             component={CannedResponsesOverview}
           />
-          <Route
+          {/* <Route
             path="/settings/email-forwarding"
             component={ForwardingAddressSettings}
           />
@@ -497,11 +508,12 @@ const Dashboard = (props: RouteComponentProps) => {
           {shouldDisplayBilling && (
             <Route path="/settings/billing" component={BillingOverview} />
           )}
-          <Route path="/settings*" component={AccountOverview} />
+          <Route path="/settings*" component={AccountOverview} /> */}
+          <Redirect from="/settings*" to="/settings/profile" />
           <Route path="/v1/customers/:id" component={CustomerDetailsPage} />
           <Route path="/customers/:id" component={CustomerDetailsPageV2} />
           <Route path="/customers" component={CustomersPage} />
-          <Route path="/companies/new" component={CreateCompanyPage} />
+          {/* <Route path="/companies/new" component={CreateCompanyPage} />
           <Route path="/companies/:id/edit" component={UpdateCompanyPage} />
           <Route path="/companies/:id" component={CompanyDetailsPage} />
           <Route path="/companies" component={CompaniesPage} />
@@ -566,19 +578,19 @@ const Dashboard = (props: RouteComponentProps) => {
           />
           <Route path="/functions/:id" component={LambdaDetailsPage} />
           <Route path="/functions" component={LambdasOverview} />
-          <Route path="/reporting" component={ReportingDashboard} />
           <Route path="/sessions/live/:session" component={LiveSessionViewer} />
           <Route path="/sessions/list" component={SessionsOverview} />
           <Route path="/sessions/setup" component={InstallingStorytime} />
-          <Route path="/sessions*" component={SessionsOverview} />
+        <Route path="/sessions*" component={SessionsOverview} /> */}
+          <Route path="/reporting" component={ReportingDashboard} />
           <Route path="/tags/:id" component={TagDetailsPage} />
           <Route path="/tags" component={TagsOverview} />
           <Route path="/issues/:id" component={IssueDetailsPage} />
           <Route path="/issues" component={IssuesOverview} />
           <Route path="/notes" component={NotesOverview} />
-          <Route path="/conversations*" component={InboxesDashboard} /> */}
+          <Route path="/conversations*" component={InboxesDashboard} />
           <Route path="/inboxes*" component={InboxesDashboard} />
-          <Route path="*" render={() => <Redirect to="/inboxes" />} />
+          <Route path="*" render={() => <Redirect to="/conversations/all" />} />
         </Switch>
       </Layout>
 

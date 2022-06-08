@@ -113,7 +113,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
               mode="inline"
               theme="dark"
             >
-              {/* <Menu.SubMenu key="conversations" title="Conversations">
+              <Menu.SubMenu key="conversations" title="Conversations">
                 <Menu.Item key="all">
                   <Link to="/conversations/all">
                     <Flex
@@ -213,7 +213,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
                 <Menu.Item key="closed">
                   <Link to="/conversations/closed">Closed</Link>
                 </Menu.Item>
-              </Menu.SubMenu> */}
+              </Menu.SubMenu>
 
               <Menu.SubMenu key="inboxes" title="Inboxes">
                 {inboxes.map((inbox) => {
