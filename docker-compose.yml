@@ -19,6 +19,7 @@ services:
       - REACT_APP_URL=app.papercups.io
       - PAPERCUPS_REGISTRATION_DISABLED=true
       - REGISTRATION_SECRET_KEY=thisisakey
+      - ALLOWED_ORIGINS=http://localhost:3000,https://isprtest.in
   db:
     image: postgres:alpine
     restart: always
