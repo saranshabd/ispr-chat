@@ -31,3 +31,7 @@ jobs:
           push: true
           tags: isprtest/ispr-chat:ispr-chat
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            ALLOWED_ORIGINS:http://localhost:3000,https://isprtest.in
+            COOKIE_SIGNING_SALT:${{ secrets.ISPRTEST_COOKIE_SIGNING_SALT }}
+            COOKIE_ENCRYPTION_SALT:${{ secrets.ISPRTEST_COOKIE_ENCRYPTION_SALT }}

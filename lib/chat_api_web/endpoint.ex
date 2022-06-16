@@ -3,13 +3,11 @@ defmodule ChatApiWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :chat_api
   use Appsignal.Phoenix
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
     key: "_chat_api_key",
-    signing_salt: "QvEKzv2I"
+    signing_salt: System.get_env("COOKIE_SIGNING_SALT"),
+    encryption_salt: System.get_env("COOKIE_ENCRYPTION_SALT")
   ]
 
   socket("/socket", ChatApiWeb.UserSocket,
@@ -57,16 +55,10 @@ defmodule ChatApiWeb.Endpoint do
   plug(Plug.Head)
   plug(Plug.Session, @session_options)
 
+  base_allowed_origins = [~r{^https?://(.*.?)papercups.io$}]
+  allowed_origins = String.split(System.get_env("ALLOWED_ORIGINS"), ",")
   plug(Corsica,
-    # FIXME: what's the best way to handle this if we want other websites to
-    # be allowed to hit our API?
-    origins: "*",
-    # origins: [
-    #   "http://localhost:3000",
-    #   "http://localhost:4000",
-    #   "https://taro-chat-v1.herokuapp.com",
-    #   ~r{^https?://(.*.?)papercups.io$}
-    # ],
+    origins: base_allowed_origins ++ allowed_origins,
     allow_credentials: true,
     allow_headers: ["Content-Type", "Authorization"],
     log: [rejected: :error, invalid: :warn, accepted: :debug]
